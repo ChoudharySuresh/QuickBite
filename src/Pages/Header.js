@@ -1,10 +1,24 @@
 import { Link } from "react-router-dom"
-// import {CartState} from "../Context/Context";
 import DropDownMenu from "../Components/DropDownMenu"
+import {filterBySearch} from "../Store/productSlice";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 
 const Header = () => {
-  // const {productDispatch} = CartState();
+
+  const [searchText , setSearchText] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSearch = () => {
+
+    if(searchText.length === 0){
+      alert("Enter Search Text");
+    }
+
+    dispatch(filterBySearch(searchText));
+    setSearchText("");
+  }
 
     return (
         <>
@@ -16,8 +30,8 @@ const Header = () => {
     
             <div className="flex items-center gap-20">
               <div className="flex gap-4 items-center">
-                  <input type="text" placeholder="Search" className="px-5 py-2 text-xl outline-none rounded-lg border border-solid border-orange-300"/>
-                  {/* <button className="bg-orange-500 rounded-md px-4 py-2 text-white text-xl">Search</button> */}
+                  <input type="text" value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search" className="px-5 py-2 text-xl outline-none rounded-lg border border-solid border-orange-300"/>
+                  <button onClick={handleSearch} className="bg-orange-500 rounded-md px-4 py-2 text-white text-xl">Search</button>
               </div>
     
               <nav>

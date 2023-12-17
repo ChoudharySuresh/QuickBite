@@ -1,25 +1,9 @@
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
-// import { CartState } from "../Context/Context";
 
 const Filter = () => {
-    // const {productState:{byFastDelivery,sort}  , productDispatch} = CartState();
-
     const [showModal , setShowModal] = useState(false);
-
-    const handleSortByPrice = (type) => {
-        // productDispatch({type:"FILTER_BY_PRICE" , payload:type});
-    }
-
-    const applyFilters = () => {
-        handleSortByPrice();
-        setShowModal(false)
-    }
-    const clearFilters = () => {
-        // productDispatch({type:"CLEAR_FILTERS"});
-        setShowModal(false)
-    }
 
   return (
     <>
@@ -57,8 +41,8 @@ const Filter = () => {
                             </div>
 
                             <div className="flex justify-end gap-4 ">
-                                <button onClick={applyFilters} className="px-4 py-2 border-[2px] border-gray-200 rounded-lg">Clear Filter</button>
-                                <button onClick={clearFilters} className="px-4 py-2 rounded-lg w-[10rem] bg-orange-400 text-white font-semibold">Apply</button>
+                                <button className="px-4 py-2 border-[2px] border-gray-200 rounded-lg">Clear Filter</button>
+                                <button className="px-4 py-2 rounded-lg w-[10rem] bg-orange-400 text-white font-semibold">Apply</button>
                             </div>
                         </div>
                     </div>

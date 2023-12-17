@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-// import { CartState } from '../Context/Context';
 import { FaStar } from "react-icons/fa";
 import { MdAccessTimeFilled } from "react-icons/md";
 import { LiaRupeeSignSolid } from "react-icons/lia";
@@ -11,9 +10,6 @@ import Loader from '../Components/Loader';
 const RestaurantMenu = () => {
     const params = useParams();
     const id = params.resId;
-
-    // const {state:{ menuData }, dispatch} = CartState();
-
 
     const [restaurantInfo , setrestaurantInfo] = useState();
     const [restaurantMenuData , setRestaurantMenuData] = useState([]);

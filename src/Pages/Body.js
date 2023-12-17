@@ -1,10 +1,8 @@
-// import {CartState} from "../Context/Context";
 import { useEffect } from "react";
 import Card from "../Components/Card";
 import Filter from "../Components/Filter";
 import Shimmer from "../Components/Shimmer";
 import { Link } from "react-router-dom";
-
 import { useDispatch ,useSelector} from "react-redux";
 import { fetchProducts } from "../Store/productSlice";
 import {STATUSES} from "../Store/productSlice";
@@ -35,12 +33,22 @@ const Body = () => {
 
   const dispatch = useDispatch();
 
-  const {data,Status} = useSelector(state => state.product);
+  const {data,Status,searchQuery} = useSelector(state => state.product);
 
   useEffect(()=>{
     dispatch(fetchProducts())
   },[])
 
+  const transformedRestaurant = () => {
+    let sortedRestaurant = data;
+
+    if(searchQuery){
+      sortedRestaurant = sortedRestaurant.filter((res) => res.info.name.toLowerCase().includes(searchQuery))
+    }
+    return sortedRestaurant;
+  }
+
+  
   return (
     <>
       <Filter/>
@@ -49,9 +57,11 @@ const Body = () => {
         {
           (Status === STATUSES.LOADING) ? <Shimmer/> 
           :
-          (Status === STATUSES.ERROR) ? (<h1>Error</h1>)
+          (Status === STATUSES.ERROR) ? (<h1>Error...</h1>)
           :
-          data.map((restaurant) => {
+          (transformedRestaurant().length <= 0) ? (<h1 className="text-center text-xl">No Restaurant Found </h1>)
+          :
+          transformedRestaurant().map((restaurant) => {
             return ( <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}><Card data={restaurant.info} /></Link>)
           })
         }

@@ -10,6 +10,7 @@ const productSlice = createSlice({
     initialState : {
         data : [],
         Status : STATUSES.IDLE,
+        searchQuery:"",
     },
     reducers:{
         setProducts(state,action) {
@@ -18,11 +19,15 @@ const productSlice = createSlice({
 
         setStatus(state,action){
             state.Status = action.payload
+        },
+
+        filterBySearch(state, action){
+            state.searchQuery = action.payload;
         }
     }
 })
 
-export const {setProducts , setStatus} = productSlice.actions;
+export const {setProducts , setStatus , filterBySearch} = productSlice.actions;
 
 export default productSlice.reducer;
 

@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from 'react-router-dom';
 import {removeFromCart} from "../Store/CartSlice"
 
-// function classNames(...classes) {
-//     return classes.filter(Boolean).join(' ')
-// }
 
 const DropDownMenu = () => {
     const item = useSelector(state => state.Cart);
