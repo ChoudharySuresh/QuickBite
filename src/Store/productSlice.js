@@ -11,6 +11,7 @@ const productSlice = createSlice({
         data : [],
         Status : STATUSES.IDLE,
         searchQuery:"",
+        fastDelivery:false,
     },
     reducers:{
         setProducts(state,action) {
@@ -23,11 +24,19 @@ const productSlice = createSlice({
 
         filterBySearch(state, action){
             state.searchQuery = action.payload;
+        },
+
+        filterByDelivery(state , action){
+            state.fastDelivery = !state.fastDelivery
+        },
+        clearFilter(state){
+            state.searchQuery = "";
+            state.fastDelivery = false;
         }
     }
 })
 
-export const {setProducts , setStatus , filterBySearch} = productSlice.actions;
+export const {setProducts , setStatus , filterBySearch , filterByDelivery , clearFilter} = productSlice.actions;
 
 export default productSlice.reducer;
 

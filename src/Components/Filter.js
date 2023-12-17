@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import {filterByDelivery , clearFilter} from "../Store/productSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Filter = () => {
     const [showModal , setShowModal] = useState(false);
+    const {fastDelivery} = useSelector(state => state.product);
+    console.log(fastDelivery);
+    const dispatch = useDispatch();
 
+    const handleClearFilter = () => {
+        dispatch(clearFilter());
+    }
   return (
     <>
         <div className="mx-16 my-8">
@@ -26,23 +34,15 @@ const Filter = () => {
                             </div>
 
                             <div>
-                                {/* <div className="flex items-center gap-2 my-4 text-lg">
-                                    <input type="radio" name="group1" id="lowToHigh" onChange={() => handleSortByPrice("lowToHigh")} checked={sort === "lowToHigh" ? true : false}/>
-                                    <label htmlFor="lowToHigh">Cost: Low To High</label>
-                                </div>
                                 <div className="flex items-center gap-2 my-4 text-lg">
-                                    <input type="radio" name="group1" id="highToLow" onChange={() => handleSortByPrice("highToLow")} checked={sort === "highToLow" ? true : false}/>
-                                    <label htmlFor="highToLow">Cost: High To Low</label>
-                                </div>
-                                <div className="flex items-center gap-2 my-4 text-lg">
-                                    <input type="checkbox" id="fastDelivery" onChange={() => productDispatch({type:"FILTER_BY_DELIVERY"})} checked={byFastDelivery}/>
+                                    <input type="checkbox" id="fastDelivery" onChange={() => dispatch(filterByDelivery())} checked={fastDelivery}/>
                                     <label htmlFor="fastDelivery">Fast Delivery</label>
-                                </div> */}
+                                </div>
                             </div>
 
                             <div className="flex justify-end gap-4 ">
-                                <button className="px-4 py-2 border-[2px] border-gray-200 rounded-lg">Clear Filter</button>
-                                <button className="px-4 py-2 rounded-lg w-[10rem] bg-orange-400 text-white font-semibold">Apply</button>
+                                <button onClick={handleClearFilter} className="px-4 py-2 border-[2px] border-gray-200 rounded-lg">Clear Filter</button>
+                                <button onClick={() => setShowModal(false)} className="px-4 py-2 rounded-lg w-[10rem] bg-orange-400 text-white font-semibold">Apply</button>
                             </div>
                         </div>
                     </div>

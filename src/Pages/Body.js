@@ -33,7 +33,7 @@ const Body = () => {
 
   const dispatch = useDispatch();
 
-  const {data,Status,searchQuery} = useSelector(state => state.product);
+  const {data,Status,searchQuery,fastDelivery} = useSelector(state => state.product);
 
   useEffect(()=>{
     dispatch(fetchProducts())
@@ -42,13 +42,18 @@ const Body = () => {
   const transformedRestaurant = () => {
     let sortedRestaurant = data;
 
+    if(fastDelivery){
+      sortedRestaurant = sortedRestaurant.filter((prod) => prod.info.sla.deliveryTime).sort((a,b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime)
+    }
+
     if(searchQuery){
       sortedRestaurant = sortedRestaurant.filter((res) => res.info.name.toLowerCase().includes(searchQuery))
     }
+
     return sortedRestaurant;
   }
 
-  
+  console.log(data);
   return (
     <>
       <Filter/>
