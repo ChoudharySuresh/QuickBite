@@ -12,6 +12,7 @@ const productSlice = createSlice({
         Status : STATUSES.IDLE,
         searchQuery:"",
         fastDelivery:false,
+        sort:"",
     },
     reducers:{
         setProducts(state,action) {
@@ -25,18 +26,20 @@ const productSlice = createSlice({
         filterBySearch(state, action){
             state.searchQuery = action.payload;
         },
-
-        filterByDelivery(state , action){
+        filterByRatings(state, action){
+            state.sort=action.payload;
+        },
+        filterByDelivery(state){
             state.fastDelivery = !state.fastDelivery
         },
         clearFilter(state){
             state.searchQuery = "";
             state.fastDelivery = false;
-        }
+        },
     }
 })
 
-export const {setProducts , setStatus , filterBySearch , filterByDelivery , clearFilter} = productSlice.actions;
+export const {setProducts , setStatus , filterBySearch , filterByDelivery, filterByRatings, clearFilter} = productSlice.actions;
 
 export default productSlice.reducer;
 

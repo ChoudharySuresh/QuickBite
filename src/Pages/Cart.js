@@ -9,7 +9,7 @@ const Cart = () => {
     const cartItem = useSelector(state => state.Cart)
     
     const dispatch = useDispatch();
-    const [total , setTotal] = useState(0);
+    const [total , setTotal] = useState(calculateTotal(cartItem));
 
     const handleDelete = (item) => {
         dispatch(removeFromCart(item))
@@ -21,28 +21,32 @@ const Cart = () => {
 
 
     useEffect(()=>{
-
-        // const convertToCurrency = value => {
-        //     return new Intl.NumberFormat('en-IN', {
-        //       style: 'currency',
-        //       currency: 'INR',
-        //     }).format(value / 100);
-        // };
-
-        const subTotal = cartItem.reduce((acc , curr) => acc + (curr.price) * curr.qty , 0)
-        const deliveryFee = 42;
-        const gstCharges = (subTotal + deliveryFee) * 0.18;
-        const orderTotal = subTotal + deliveryFee + gstCharges;
-
-        console.log('subTotal:', subTotal);
-        console.log('deliveryFee:', deliveryFee);
-        console.log('gstCharges:', gstCharges);
-        console.log('orderTotal:', orderTotal);
-        
-        if(!isNaN(orderTotal)){
-            setTotal(orderTotal);
-        }
+        setTotal(calculateTotal(cartItem))
     },[cartItem])
+
+    function convertToCurrency (value) {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+          }).format(value / 100);
+    }
+
+    function calculateTotal(cartItem){
+        const subTotal = cartItem.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
+        // const deliveryFee = 42;
+        // const gstCharges = (subTotal + deliveryFee) * 0.18;
+        // const orderTotal = subTotal + deliveryFee + gstCharges;
+    
+        // console.log("subTotal:", subTotal);
+        // console.log("deliveryFee:", deliveryFee);
+        // console.log("gstCharges:", gstCharges);
+        // console.log("orderTotal:", orderTotal);
+    
+        if (!isNaN(subTotal)) {
+          return convertToCurrency(subTotal);
+        }
+        return convertToCurrency(0);  
+    }
 
   return (
     <>

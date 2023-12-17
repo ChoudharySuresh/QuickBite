@@ -58,7 +58,7 @@ const DropDownMenu = () => {
                             }
 
                             <div className='flex justify-center my-2'>
-                                <Link to="/cart"><button className='px-4 py-2 bg-orange-400 rounded-lg w-[100%] mx-5'>Go To Cart</button></Link> 
+                                <Link to="/cart"><button className='px-4 py-2 bg-orange-400 rounded-lg w-[33rem] text-white font-bold mx-5'>Go To Cart</button></Link> 
                             </div>
                         </div>
                     }

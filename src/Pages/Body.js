@@ -9,31 +9,9 @@ import {STATUSES} from "../Store/productSlice";
 
 
 const Body = () => {
-  // const {state:{restaurantData, initialized} , productState:{searchQuery , byFastDelivery,sort}} = CartState();
-
-  // const transformRestaurant = () => {
-  //   let sortedRestaurant = restaurantData;
-
-  //   if(sort){
-  //     sortedRestaurant = sortedRestaurant.sort((a,b) => 
-  //       sort === "lowToHigh" ? a.price - b.price : b.price - a.price);
-  //   }
-
-  //   if(byFastDelivery){
-  //     sortedRestaurant = sortedRestaurant.filter((prod) => prod.info.sla.deliveryTime).sort((a,b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime)
-  //   }
-    
-  //   if(searchQuery){
-  //     sortedRestaurant = sortedRestaurant.filter(item => item.info.name.toLowerCase().includes(searchQuery))
-  //   }
-  //   return sortedRestaurant;
-  // }
-  // console.log(restaurantData);
-
-
+  const {data,Status,searchQuery,fastDelivery , sort} = useSelector(state => state.product);
+  
   const dispatch = useDispatch();
-
-  const {data,Status,searchQuery,fastDelivery} = useSelector(state => state.product);
 
   useEffect(()=>{
     dispatch(fetchProducts())
@@ -41,6 +19,10 @@ const Body = () => {
 
   const transformedRestaurant = () => {
     let sortedRestaurant = data;
+
+    if(sort){
+      sortedRestaurant = sortedRestaurant.filter((prod) => prod.info.avgRating).sort((a,b) => sort ==="4.0+" ? a.info.avgRating - b.info.avgRating : b.info.avgRating - a.info.avgRating);
+    }
 
     if(fastDelivery){
       sortedRestaurant = sortedRestaurant.filter((prod) => prod.info.sla.deliveryTime).sort((a,b) => a.info.sla.deliveryTime - b.info.sla.deliveryTime)

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import {filterByDelivery , clearFilter} from "../Store/productSlice";
+import {filterByDelivery , clearFilter , filterByRatings} from "../Store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Filter = () => {
     const [showModal , setShowModal] = useState(false);
-    const {fastDelivery} = useSelector(state => state.product);
-    console.log(fastDelivery);
+    const {fastDelivery , sort} = useSelector(state => state.product);
+    // console.log(fastDelivery);
     const dispatch = useDispatch();
 
     const handleClearFilter = () => {
@@ -34,6 +34,14 @@ const Filter = () => {
                             </div>
 
                             <div>
+                                <div className="flex items-center gap-2 my-4 text-lg">
+                                    <input type="radio" id="rating4.0+" name="rating" onChange={() => dispatch(filterByRatings("4.0+"))} checked={sort === "4.0+" ? true : false}/>
+                                    <label htmlFor="rating4.0+">Ratings 4.0+</label>
+                                </div>
+                                <div className="flex items-center gap-2 my-4 text-lg">
+                                    <input type="radio" id="rating4.5+" name="rating" onChange={() => dispatch(filterByRatings("4.5+"))} checked={sort === "4.5+" ? true : false}/>
+                                    <label htmlFor="rating4.5+">Ratings 4.5+</label>
+                                </div>
                                 <div className="flex items-center gap-2 my-4 text-lg">
                                     <input type="checkbox" id="fastDelivery" onChange={() => dispatch(filterByDelivery())} checked={fastDelivery}/>
                                     <label htmlFor="fastDelivery">Fast Delivery</label>
