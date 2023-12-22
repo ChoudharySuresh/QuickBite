@@ -3,6 +3,7 @@ import Header from "./Pages/Header"
 import Body from "./Pages/Body"
 import RestaurantMenu from './Pages/RestaurantMenu';
 import Cart from "./Pages/Cart";
+import About from './Pages/About';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/' element={<Body/>}></Route>
         <Route path="/restaurant/:resId" element={<RestaurantMenu/>}></Route>
         <Route path="/cart" element={<Cart/>}></Route>
+        <Route path="/about" element={<About/>}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -36,7 +36,7 @@ const Header = () => {
     
               <nav>
                 <ul className="flex items-center gap-8 text-xl">
-                  <li> <Link to="/">About</Link> </li>
+                  <li> <Link to="/about">About</Link> </li>
                   <li><DropDownMenu/></li>
                   <li> <Link to="/">Log In</Link> </li>
                 </ul>
