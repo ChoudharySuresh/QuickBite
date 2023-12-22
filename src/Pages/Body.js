@@ -9,7 +9,7 @@ import {STATUSES} from "../Store/productSlice";
 
 
 const Body = () => {
-  const {data,Status,searchQuery,fastDelivery , sort} = useSelector(state => state.product);
+  const {data,Status,searchQuery,fastDelivery , sort , veg} = useSelector(state => state.product);
   
   const dispatch = useDispatch();
 
@@ -32,6 +32,9 @@ const Body = () => {
       sortedRestaurant = sortedRestaurant.filter((res) => res.info.name.toLowerCase().includes(searchQuery))
     }
 
+    if(veg){
+      sortedRestaurant = sortedRestaurant.filter((res) => res.info.veg)
+    }
     return sortedRestaurant;
   }
 

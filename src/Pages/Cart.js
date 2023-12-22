@@ -7,9 +7,7 @@ import { useEffect, useState } from "react";
 
 const Cart = () => {
     const cartItem = useSelector(state => state.Cart)
-    
     const dispatch = useDispatch();
-    const [total , setTotal] = useState(calculateTotal(cartItem));
 
     const handleDelete = (item) => {
         dispatch(removeFromCart(item))
@@ -19,34 +17,11 @@ const Cart = () => {
         dispatch(changeCartQuantity({id,qty:newQty}));
     }
 
+    const [total , setTotal] = useState();
 
     useEffect(()=>{
-        setTotal(calculateTotal(cartItem))
+        setTotal(cartItem.reduce((acc,currentItem)=> acc + (currentItem.price) * currentItem.qty , 0))
     },[cartItem])
-
-    function convertToCurrency (value) {
-        return new Intl.NumberFormat('en-IN', {
-            style: 'currency',
-            currency: 'INR',
-          }).format(value / 100);
-    }
-
-    function calculateTotal(cartItem){
-        const subTotal = cartItem.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-        // const deliveryFee = 42;
-        // const gstCharges = (subTotal + deliveryFee) * 0.18;
-        // const orderTotal = subTotal + deliveryFee + gstCharges;
-    
-        // console.log("subTotal:", subTotal);
-        // console.log("deliveryFee:", deliveryFee);
-        // console.log("gstCharges:", gstCharges);
-        // console.log("orderTotal:", orderTotal);
-    
-        if (!isNaN(subTotal)) {
-          return convertToCurrency(subTotal);
-        }
-        return convertToCurrency(0);  
-    }
 
   return (
     <>
@@ -113,14 +88,14 @@ const Cart = () => {
                 <div className="bg-gray-100 rounded-lg w-[35%] px-8 py-4 h-[100%]">
                     <h2 className="text-2xl pb-2">Order Summary</h2>
                     <div>
-                        <div>
+                        {/* <div>
                             <div className="flex justify-between my-4">
                                 <p className="text-gray-600">SubTotal</p>
                                 <p>₹100</p>
                             </div>
                             <hr className="h-[2.5px] bg-gray-300"/>
-                        </div>
-                        <div>
+                        </div> */}
+                        {/* <div>
                             <div className="flex justify-between my-4">
                                 <p className="text-gray-600">Delivery Fee</p>
                                 <p>₹42</p>
@@ -133,11 +108,11 @@ const Cart = () => {
                                 <p>₹53.49</p>
                             </div>
                             <hr className="h-[2.5px] bg-gray-300"/>
-                        </div>
+                        </div> */}
 
                         <div className="flex justify-between my-6 text-xl">
                             <p>Order Total</p>
-                            <p>{total}</p>
+                            <p>{total > 0 ? new Intl.NumberFormat("en-In" , {style:"currency" , currency:"INR"}).format(total/100) : ("")}</p>
                         </div>
                     </div>
                     <button className="w-[100%] px-4 py-3 rounded-lg bg-[#4F46E5] text-white">Checkout</button>

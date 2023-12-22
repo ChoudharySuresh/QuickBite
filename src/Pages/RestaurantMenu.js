@@ -47,7 +47,7 @@ const RestaurantMenu = () => {
     <>
         <div className='w-[60%] mx-auto my-4 px-4 py-2'>
             {/* Menu Header */}
-            {/* <div>
+            <div>
 
                 <div className='flex justify-between items-center my-4'>
                     <div>
@@ -91,7 +91,7 @@ const RestaurantMenu = () => {
                 </div>
             </div>
 
-            <hr className='my-8 h-[2px] bg-gray-300'/> */}
+            <hr className='my-8 h-[2px] bg-gray-300'/>
 
             {/* Menu */}
             {

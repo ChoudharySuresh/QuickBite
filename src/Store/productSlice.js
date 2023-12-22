@@ -13,6 +13,7 @@ const productSlice = createSlice({
         searchQuery:"",
         fastDelivery:false,
         sort:"",
+        veg:false,
     },
     reducers:{
         setProducts(state,action) {
@@ -32,14 +33,19 @@ const productSlice = createSlice({
         filterByDelivery(state){
             state.fastDelivery = !state.fastDelivery
         },
+        filterByVeg(state,action){
+            state.veg = !state.veg;
+        },
         clearFilter(state){
             state.searchQuery = "";
             state.fastDelivery = false;
+            state.sort = "";
+            state.veg = false;
         },
     }
 })
 
-export const {setProducts , setStatus , filterBySearch , filterByDelivery, filterByRatings, clearFilter} = productSlice.actions;
+export const {setProducts , setStatus , filterBySearch , filterByDelivery, filterByRatings, filterByVeg ,  clearFilter} = productSlice.actions;
 
 export default productSlice.reducer;
 
