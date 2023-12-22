@@ -3,6 +3,7 @@ import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux"
 import {removeFromCart , changeCartQuantity} from "../Store/CartSlice"
 import { useEffect, useState } from "react";
+import EmptyCart from "./EmptyCart";
 
 
 const Cart = () => {
@@ -23,7 +24,7 @@ const Cart = () => {
         setTotal(cartItem.reduce((acc,currentItem)=> acc + (currentItem.price) * currentItem.qty , 0))
     },[cartItem])
 
-  return (
+  return cartItem.length <= 0 ? <EmptyCart/> : (
     <>
         <div className="p-3">
             <div>
@@ -90,7 +91,7 @@ const Cart = () => {
                     <div>
                         <div className="flex justify-between my-6 text-xl">
                             <p>Order Total</p>
-                            <p>{total > 0 ? new Intl.NumberFormat("en-In" , {style:"currency" , currency:"INR"}).format(total/100) : ("")}</p>
+                            <p>{total > 0 ? new Intl.NumberFormat("en-In" , {style:"currency" , currency:"INR"}).format(total/100) : (0)}</p>
                         </div>
                     </div>
                     <button className="w-[100%] px-4 py-3 rounded-lg bg-[#4F46E5] text-white">Checkout</button>

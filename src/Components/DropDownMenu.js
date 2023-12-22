@@ -20,8 +20,12 @@ const DropDownMenu = () => {
         <Menu as="div" className="relative inline-block text-left">
             <div>
                 <Menu.Button className="inline-flex items-center w-full justify-center gap-x-1.5  bg-white px-3 py-2 text-gray-900 shadow-sm ">
-                <IoMdCart size="1.5rem" color='green'/>
-                <p className='text-base'>({item.length})</p>
+                    <div className='relative'>
+                        <div>
+                            <IoMdCart size="2.1rem" color='black'/>
+                        </div>
+                        <div className='w-[1rem] h-[1rem] rounded-full text-white bg-red-500 absolute -top-2 -right-2 flex justify-center items-center p-3 text-sm'>{item.length}</div>
+                    </div>
                 <MdOutlineKeyboardArrowDown/>
                 </Menu.Button>
             </div>

@@ -23,8 +23,8 @@ const Filter = () => {
     }
 
   return (
-    <div className="flex items-center">
-        <div className="mx-16 my-8">
+    <div className="flex items-center gap-4 mt-5 mx-16">
+        <div className="">
             <button onClick={() => setShowModal(true)} className="flex items-center gap-2 text-xl px-4 py-2 border-[2px] shadow-sm rounded-full border-slate-200">Filter <FiFilter size="1.3rem"/></button>
         </div>
 

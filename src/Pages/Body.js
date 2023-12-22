@@ -43,7 +43,7 @@ const Body = () => {
     <>
       <Filter/>
       
-      <div className="flex w-[95%] flex-wrap my-8 mx-auto bg-[#FFFFFF]">
+      <div className="flex w-[95%] flex-wrap mx-auto my-5 bg-[#FFFFFF]">
         {
           (Status === STATUSES.LOADING) ? <Shimmer/> 
           :
