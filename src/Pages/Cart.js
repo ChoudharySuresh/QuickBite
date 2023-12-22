@@ -88,28 +88,6 @@ const Cart = () => {
                 <div className="bg-gray-100 rounded-lg w-[35%] px-8 py-4 h-[100%]">
                     <h2 className="text-2xl pb-2">Order Summary</h2>
                     <div>
-                        {/* <div>
-                            <div className="flex justify-between my-4">
-                                <p className="text-gray-600">SubTotal</p>
-                                <p>₹100</p>
-                            </div>
-                            <hr className="h-[2.5px] bg-gray-300"/>
-                        </div> */}
-                        {/* <div>
-                            <div className="flex justify-between my-4">
-                                <p className="text-gray-600">Delivery Fee</p>
-                                <p>₹42</p>
-                            </div>
-                            <hr className="h-[2.5px] bg-gray-300"/>
-                        </div>
-                        <div>
-                            <div className="flex justify-between my-4">
-                                <p className="text-gray-600">GST and Restaurant Charges</p>
-                                <p>₹53.49</p>
-                            </div>
-                            <hr className="h-[2.5px] bg-gray-300"/>
-                        </div> */}
-
                         <div className="flex justify-between my-6 text-xl">
                             <p>Order Total</p>
                             <p>{total > 0 ? new Intl.NumberFormat("en-In" , {style:"currency" , currency:"INR"}).format(total/100) : ("")}</p>
