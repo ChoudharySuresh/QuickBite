@@ -38,7 +38,6 @@ const Body = () => {
     return sortedRestaurant;
   }
 
-  console.log(data);
   return (
     <>
       <Filter/>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {removeFromCart , changeCartQuantity} from "../Store/CartSlice"
 import { useEffect, useState } from "react";
 import EmptyCart from "./EmptyCart";
-
+import { ToastContainer ,toast } from "react-toastify";
 
 const Cart = () => {
     const cartItem = useSelector(state => state.Cart)
@@ -23,6 +23,20 @@ const Cart = () => {
     useEffect(()=>{
         setTotal(cartItem.reduce((acc,currentItem)=> acc + (currentItem.price) * currentItem.qty , 0))
     },[cartItem])
+
+
+    const notify = () => {
+        toast.info('Feature Will be Added Soon!', {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
 
   return cartItem.length <= 0 ? <EmptyCart/> : (
     <>
@@ -94,9 +108,21 @@ const Cart = () => {
                             <p>{total > 0 ? new Intl.NumberFormat("en-In" , {style:"currency" , currency:"INR"}).format(total/100) : (0)}</p>
                         </div>
                     </div>
-                    <button className="w-[100%] px-4 py-3 rounded-lg bg-[#4F46E5] text-white">Checkout</button>
+                    <button onClick={notify} className="w-[100%] px-4 py-3 rounded-lg bg-[#4F46E5] text-white">Checkout</button>
                 </div>
             </div>
+            <ToastContainer
+            position="bottom-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            />
         </div>
 
     </>

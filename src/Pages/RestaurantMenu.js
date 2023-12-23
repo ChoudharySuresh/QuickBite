@@ -42,7 +42,7 @@ const RestaurantMenu = () => {
             console.log(error);
         }
     }
-    console.log(restaurantInfo);
+    
   return restaurantMenuData.length <= 0 ? (<Loader/>) : (
     <>
         <div className='w-[60%] mx-auto my-4 px-4 py-2'>

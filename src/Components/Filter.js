@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FiFilter } from "react-icons/fi";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { RxCross1 } from "react-icons/rx";
 import {filterByDelivery , clearFilter , filterByRatings , filterByVeg} from "../Store/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -9,8 +8,7 @@ const Filter = () => {
     const [showModal , setShowModal] = useState(false);
     const [activeVegBtn , setActiveVegBtn] = useState(false);
 
-    const {fastDelivery , sort , veg} = useSelector(state => state.product);
-    // console.log(veg);
+    const {fastDelivery , sort } = useSelector(state => state.product);
     const dispatch = useDispatch();
 
     const handleClearFilter = () => {
@@ -72,14 +70,6 @@ const Filter = () => {
             null
         }
 
-        {/* <button onClick={handleVegFilter} className={`flex items-center gap-2 text-xl px-4 py-2 border-[2px] shadow-sm rounded-full border-slate-200 ${activeVegBtn ? `bg-gray-100 border-[1px] border-black` : ``}`}>
-            Pure Veg {' '}
-            {
-                activeVegBtn && (<button onClick={handleVegFilter}><RxCross1/></button>)
-            }
-        </button> */}
-
-        {/* New Logic */}
         <button onClick={handleVegFilter} className={`flex items-center gap-2 text-xl px-4 py-2 border-[2px] shadow-sm rounded-full border-slate-200 ${activeVegBtn ? `bg-gray-100 border-[1px] border-black` : ``}`}>
             Pure Veg 
         </button>
