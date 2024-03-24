@@ -65,14 +65,27 @@ export const fetchProducts = () => {
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const jsonData = await res.json();
-      dispatch(
-        setProducts(
-          jsonData?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants
-        )
-      );
+
+      let restaurantIndex = -1;
+
+      jsonData?.data?.cards.forEach((card, index) => {
+        if (card?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
+          restaurantIndex = index;
+        }
+      });
+
+      if (restaurantIndex !== -1) {
+        dispatch(
+          setProducts(
+            jsonData?.data?.cards[restaurantIndex]?.card?.card?.gridElements
+              ?.infoWithStyle?.restaurants
+          )
+        );
+      } else {
+        throw new Error("Restaurant information not found in API response.");
+      }
       dispatch(setStatus(STATUSES.IDLE));
-      //   console.log(jsonData);
+      // console.log(jsonData);
     } catch (err) {
       console.log(err);
       dispatch(setStatus(STATUSES.ERROR));
